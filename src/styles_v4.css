@@ -1,0 +1,613 @@
+/*==========
+BLANCO INTENSO, SECCIONES TRANSPARENTES SIN FONDO, FONDO CELESTE DEFINITIVO
+===========*/
+
+/* ===========================
+   BASE & RESET
+   =========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background:
+    linear-gradient(rgba(255,255,255,.60),rgba(255,255,255,.60)),
+    url("assets/Fondos/fondo_flores_celestes_2.jpeg");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  color:var(--cfont);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/*============================
+PARRAFOS
+============================*/
+
+section p {
+  font-size: 1.25rem;
+  line-height: 1.9;
+
+  font-weight: 550;
+
+  color: var(--gold);
+
+  /*text-shadow:
+      0 2px 10px rgba(0,0,0,.18);
+      */
+}
+
+.section-icon{
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+
+    border: 2px solid rgba(255,255,255,.45);
+
+    box-shadow:
+        0 0 18px rgba(255,255,255,.20),
+        0 8px 18px rgba(0,0,0,.15);
+}
+
+/* ===========================
+   PALETA BLANCO
+   =========================== */
+:root{
+  --cfont: #FFFFFF;
+  --cfont-light: #FFFFFF;
+  --cfont-muted: #FFFFFF;
+  --cfont-dark: #FFFFFF;
+  --cfont-border: rgba(255,255,255,.45);
+  --cfont-shadow: rgba(40,55,75,.15);
+}
+
+/* ===========================
+   TIPOGRAFÍA UTILITARIA
+   =========================== */
+.display {
+  font-family: "Cormorant Infant", "Cormorant Garamond", serif;
+  font-weight: 400;
+}
+
+.script {
+  font-family: "Italianno", cursive;
+  font-weight: 400;
+}
+
+.label {
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* ===========================
+   PORTADA (COVER)
+   =========================== */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  transition: opacity 0.8s ease;
+}
+
+.cover.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cover img {
+  width: min(560px, 80vw);
+  box-shadow: 0 30px 60px -25px rgba(80, 72, 56, 0.35);
+  border-radius: 4px;
+}
+
+.cover .hint {
+  margin-top: 2.5rem;
+  color: var(--cfont-dark);
+  text-shadow: 0 1px 2px rgba(245, 242, 236, 0.8);
+}
+
+.leaves {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.leaves svg {
+  position: absolute;
+  color: var(--cfont-light);
+  height: 80%;
+  width: 6rem;
+}
+
+.leaves .l {
+  left: 0.5rem;
+  top: 2.5rem;
+}
+
+.leaves .r {
+  right: 0.5rem;
+  top: 2.5rem;
+  transform: scaleX(-1);
+}
+
+/* ===========================
+   CONTENIDO PRINCIPAL
+   =========================== */
+.content {
+  display: none;
+  animation: fade 1.2s ease;
+}
+
+.content.show {
+  display: block;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ===========================
+   SECCIONES
+   =========================== */
+section {
+  position: relative;
+  width: min(90%, 1000px);
+  min-height: 80dvh;
+  margin: 1.5rem auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 30px;
+  background: transparent;
+  border: 1px solid var(--cfont-border);
+  box-shadow: 0 10px 30px var(--cfont-shadow);
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 20px;
+  border: 1px solid var(--cfont-border);
+  pointer-events: none;
+}
+
+/*
+section.alt {
+  background: transparent;
+  border: 1px solid var(--cfont-border);
+  box-shadow: 0 10px 30px var(--cfont-shadow);
+}
+*/
+
+section.hero {
+  min-height: 100vh;
+}
+
+/* ===========================
+   DECORACIÓN LATERAL
+   =========================== */
+.deco {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.deco svg {
+  position: absolute;
+  color: var(--cfont-light);
+  width: 5rem;
+  height: 60%;
+}
+
+.deco .l {
+  left: -1rem;
+  top: 2.5rem;
+}
+
+.deco .r {
+  right: -1rem;
+  bottom: 2.5rem;
+  transform: scaleX(-1);
+}
+
+/* ===========================
+   MONOGRAMA & TIPOGRAFÍA
+   =========================== */
+.mono {
+  font-family: "Italianno", cursive;
+  letter-spacing: 0.02em;
+  color: var(--cfont);
+}
+
+.mono .big {
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.mono .amp {
+  font-size: 1.6rem;
+  margin: 0 0.15em;
+  opacity: 0.7;
+}
+
+h1.name {
+  font-family: "Cormorant Infant", serif;
+  font-weight: 300;
+  font-size: 5rem;
+  line-height: 1;
+  margin: 0;
+  color: var(--cfont);
+  text-shadow: 0 2px 8px rgba(245, 242, 236, 0.7);
+}
+
+.amp-big {
+  font-family: "Italianno", cursive;
+  color: var(--cfont);
+  font-size: 3rem;
+  margin: 0.25rem 0;
+  text-shadow: 0 2px 8px rgba(245, 242, 236, 0.7);
+}
+
+.ornament {
+  height: 2rem;
+  width: 14rem;
+  color: var(--cfont-light);
+}
+
+.quote {
+  font-family: "Italianno", cursive;
+  font-size: 2.5rem;
+  color: var(--cfont);
+  text-shadow: 0 2px 8px rgba(245, 242, 236, 0.7);
+}
+
+/* ===========================
+   UTILIDADES DE ESPACIADO
+   =========================== */
+.mb-8  { margin-bottom: 2rem; }
+.mt-2  { margin-top: 0.5rem; }
+.mt-4  { margin-top: 1rem; }
+.mt-6  { margin-top: 1.5rem; }
+.mt-8  { margin-top: 2rem; }
+.mt-10 { margin-top: 2.5rem; }
+.mt-12 { margin-top: 3rem; }
+.mt-14 { margin-top: 3.5rem; }
+
+.self-center { align-self: center; }
+
+/* ===========================
+   UTILIDADES DE COLOR
+   =========================== */
+.muted      { color: var(--cfont-muted); }
+.label-soft { color: var(--cfont-light); }
+.italic     { font-style: italic; }
+
+/* ===========================
+   CUENTA REGRESIVA
+   =========================== */
+.countdown {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+  color: var(--cfont);
+}
+
+.countdown .u {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown .v {
+  font-family: "Cormorant Infant", serif;
+  font-size: 2.25rem;
+  text-shadow: 0 2px 8px rgba(245, 242, 236, 0.7);
+}
+
+.countdown .l {
+  margin-top: 0.5rem;
+  color: var(--cfont-light);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+/* ===========================
+   BOTONES
+   =========================== */
+.btn {
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  border: 1px solid var(--cfont);
+  padding: 0.75rem 2rem;
+  color: var(--cfont);
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.2s;
+  background: transparent;
+  box-shadow: 0 4px 12px rgba(60, 45, 20, 0.12);
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.btn:hover {
+  background: var(--cfont);
+  color: #f5f2ec;
+  box-shadow: 0 6px 18px rgba(60, 45, 20, 0.18);
+}
+
+.btn-row {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* ===========================
+   CARD (REGALOS)
+   =========================== */
+.card {
+  margin-top: 2.5rem;
+  border: 1px solid var(--cfont-border);
+  padding: 1.5rem 2rem;
+  color: var(--cfont);
+  background: transparent;
+  box-shadow: 0 6px 18px var(--cfont-shadow);
+  border-radius: 12px;
+}
+
+/* ===========================
+   SWIPER / GALERÍA
+   =========================== */
+.momentosSwiper {
+  width: 100%;
+  margin-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.swiper-slide {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(60, 45, 20, 0.18);
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  display: block;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--cfont);
+}
+
+.swiper-pagination-bullet {
+  background: var(--cfont-light);
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--cfont);
+  opacity: 1;
+}
+
+
+/* ===========================
+   FORMULARIO RSVP
+   =========================== */
+
+form {
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 30rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  text-align: left;
+
+  font-size: 1.25rem;
+}
+
+/* Etiquetas */
+
+form label.f > span {
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  font-size: 1.1rem;
+  font-weight: 550;
+  text-transform: none;
+}
+
+/* Inputs */
+
+form input[type="text"] {
+  width: 100%;
+
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,.7);
+
+  background: transparent;
+
+  padding: .6rem 0;
+
+  color: var(--cfont);
+
+  outline: none;
+
+  font: inherit;
+  font-weight: 550;
+}
+
+form input[type="text"]::placeholder {
+  color: rgba(255,255,255,.65);
+}
+
+form input[type="text"]:focus {
+  border-color: white;
+}
+
+/* Radios */
+
+.radios {
+    display:flex;
+    flex-direction:column;
+    gap:.8rem;
+    color:var(--gold);
+    font-size:1.25rem;
+    font-weight:550;
+}
+
+.radios label {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.radios input[type="radio"] {
+  accent-color: #A9D6F5;
+}
+
+.radio-title {
+    color: var(--gold);
+    font-size: 1.1rem;
+    font-weight: 550;
+    margin-bottom: .3rem;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 1.5rem;
+  text-align: center;
+  background: transparent;
+  color: var(--cfont-muted);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (min-width: 768px) {
+  h1.name        { font-size: 7rem; }
+  .amp-big       { font-size: 3.75rem; }
+  .quote         { font-size: 3rem; }
+  .countdown     { gap: 2.5rem; }
+  .countdown .v  { font-size: 3rem; }
+  .btn-row       { flex-direction: row; }
+  .leaves svg,
+  .deco svg      { width: 6rem; }
+}
+
+@media (min-width: 1024px) {
+  section p {
+    font-size: 1.55rem;
+  }
+  .quote {
+    font-size: 5rem !important;
+  }
+  .display {
+    font-size: 1.4rem;
+  }
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+/* ===========================
+   BOTÓN MÚSICA FLOTANTE
+   =========================== */
+
+#floating-music-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1px solid var(--cfont);
+  background: rgba(245, 242, 236, 0.92);
+  color: var(--cfont);
+  font-size: 1.3rem;
+  z-index: 9999;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 25px rgba(60, 45, 20, 0.18);
+  backdrop-filter: blur(6px);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+#floating-music-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(60, 45, 20, 0.25);
+  background: var(--cfont);
+  color: white;
+}
+
+#floating-music-btn.show {
+  display: flex;
+}
