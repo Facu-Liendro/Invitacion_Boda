@@ -1,180 +1,381 @@
-/* ===========================
+/* =========================================================
    AÑO ACTUAL EN EL FOOTER
-   =========================== */
+========================================================= */
+
 document.getElementById('year').textContent =
   'Invitaciones digitales · © ' + new Date().getFullYear();
 
 
-/* ===========================
+/* =========================================================
    MÚSICA
-   =========================== */
-let audio;
+========================================================= */
+
+let audio = null;
 let musicPlaying = false;
 
+const musicBtn =
+  document.getElementById('floating-music-btn');
 
-/* ===========================
+
+/* =========================================================
    APERTURA DE LA PORTADA
-   =========================== */
-const cover = document.getElementById('cover');
-const content = document.getElementById('content');
+========================================================= */
+
+const cover =
+  document.getElementById('cover');
+
+const content =
+  document.getElementById('content');
+
 
 cover.addEventListener('click', () => {
 
   cover.classList.add('hidden');
+
   content.classList.add('show');
 
-  document
-    .getElementById('floating-music-btn')
-    .classList.add('show');
+  musicBtn.classList.add('show');
+
+
+  /*
+     Creamos el audio solamente la primera vez
+  */
 
   if (!audio) {
-    audio = new Audio('assets/Chicago.mp3');
+
+    audio = new Audio('assets/Musica_fondo.mpeg');
+
     audio.loop = true;
+
     audio.volume = 0.35;
   }
 
+
+  /*
+     Intentamos reproducir la música
+  */
+
   audio.play()
     .then(() => {
+
       musicPlaying = true;
-      document.getElementById('floating-music-btn').textContent = '⏸';
+
+      updateMusicButton();
+
     })
-    .catch(err => {
-      console.log('Audio bloqueado:', err);
+    .catch(error => {
+
+      console.log(
+        'Audio bloqueado por el navegador:',
+        error
+      );
+
+      musicPlaying = false;
+
+      updateMusicButton();
+
     });
 
 });
 
 
-/* ===========================
-   BOTÓN MÚSICA FLOTANTE
-   =========================== */
-function toggleMusic() {
+/* =========================================================
+   ACTUALIZAR BOTÓN DE MÚSICA
+========================================================= */
 
-  const btn = document.getElementById('floating-music-btn');
+function updateMusicButton() {
 
-  if (!audio) return;
+  if (!musicBtn) return;
+
 
   if (musicPlaying) {
 
-    audio.pause();
-    musicPlaying = false;
+    /*
+       Música reproduciéndose
+       → mostramos PAUSA
+    */
 
-    btn.textContent = '▶';
+    musicBtn.classList.add('is-playing');
+
+    musicBtn.setAttribute(
+      'aria-label',
+      'Pausar música'
+    );
 
   } else {
 
-    audio.play();
+    /*
+       Música pausada
+       → mostramos PLAY
+    */
 
-    musicPlaying = true;
+    musicBtn.classList.remove('is-playing');
 
-    btn.textContent = '⏸';
+    musicBtn.setAttribute(
+      'aria-label',
+      'Reproducir música'
+    );
+
   }
+
 }
 
 
-/* ===========================
-   CUENTA REGRESIVA
-   =========================== */
-const TARGET_DATE =
-  new Date('2026-10-17T20:00:00-03:00').getTime();
+/* =========================================================
+   BOTÓN MÚSICA FLOTANTE
+========================================================= */
 
-const cdContainer = document.getElementById('cd');
+function toggleMusic() {
+
+  if (!audio) return;
+
+
+  if (musicPlaying) {
+
+    /*
+       PAUSAR
+    */
+
+    audio.pause();
+
+    musicPlaying = false;
+
+    updateMusicButton();
+
+  } else {
+
+    /*
+       REPRODUCIR
+    */
+
+    audio.play()
+      .then(() => {
+
+        musicPlaying = true;
+
+        updateMusicButton();
+
+      })
+      .catch(error => {
+
+        console.log(
+          'No se pudo reproducir la música:',
+          error
+        );
+
+        musicPlaying = false;
+
+        updateMusicButton();
+
+      });
+
+  }
+
+}
+
+
+/* =========================================================
+   EVENTO DEL BOTÓN
+========================================================= */
+
+if (musicBtn) {
+
+  musicBtn.addEventListener(
+    'click',
+    toggleMusic
+  );
+
+}
+
+
+/* =========================================================
+   CUENTA REGRESIVA
+========================================================= */
+
+/*
+   BODA:
+   10 de octubre de 2026
+   20:00 hs
+   Argentina (UTC-3)
+*/
+
+const TARGET_DATE =
+  new Date(
+    '2026-10-10T20:00:00-03:00'
+  ).getTime();
+
+
+const cdContainer =
+  document.getElementById('cd');
+
 
 if (cdContainer) {
 
   function tick() {
 
     const diff =
-      Math.max(0, TARGET_DATE - Date.now());
+      Math.max(
+        0,
+        TARGET_DATE - Date.now()
+      );
+
 
     const days =
-      Math.floor(diff / 86400000);
+      Math.floor(
+        diff / 86400000
+      );
+
 
     const hours =
-      Math.floor((diff % 86400000) / 3600000);
+      Math.floor(
+        (diff % 86400000) / 3600000
+      );
+
 
     const minutes =
-      Math.floor((diff % 3600000) / 60000);
+      Math.floor(
+        (diff % 3600000) / 60000
+      );
+
 
     const seconds =
-      Math.floor((diff % 60000) / 1000);
+      Math.floor(
+        (diff % 60000) / 1000
+      );
+
 
     const map = {
+
       d: days,
+
       h: hours,
+
       m: minutes,
+
       s: seconds
+
     };
+
 
     cdContainer
       .querySelectorAll('[data-k]')
       .forEach(el => {
+
         el.textContent =
-          String(map[el.dataset.k])
-            .padStart(2, '0');
+          String(
+            map[el.dataset.k]
+          ).padStart(2, '0');
+
       });
+
   }
 
+
   tick();
-  setInterval(tick, 1000);
+
+  setInterval(
+    tick,
+    1000
+  );
+
 }
 
 
-/* ===========================
+/* =========================================================
    FORMULARIO RSVP
-   =========================== */
-const rsvpForm = document.getElementById('rsvp');
+========================================================= */
+
+const rsvpForm =
+  document.getElementById('rsvp');
+
 
 if (rsvpForm) {
 
-  rsvpForm.addEventListener('submit', e => {
+  rsvpForm.addEventListener(
+    'submit',
+    e => {
 
-    e.preventDefault();
+      e.preventDefault();
 
-    rsvpForm.style.display = 'none';
 
-    const thanks =
-      document.getElementById('thanks');
+      rsvpForm.style.display =
+        'none';
 
-    if (thanks) {
-      thanks.style.display = 'block';
+
+      const thanks =
+        document.getElementById('thanks');
+
+
+      if (thanks) {
+
+        thanks.style.display =
+          'block';
+
+      }
+
     }
-
-  });
+  );
 
 }
 
 
-/* ===========================
-   SWIPER (GALERÍA)
-   =========================== */
-if (document.querySelector('.momentosSwiper')) {
+/* =========================================================
+   SWIPER - GALERÍA
+========================================================= */
 
-  new Swiper('.momentosSwiper', {
+if (
+  document.querySelector(
+    '.momentosSwiper'
+  )
+) {
 
-    loop: true,
+  new Swiper(
+    '.momentosSwiper',
+    {
 
-    spaceBetween: 20,
+      loop: true,
 
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    },
+      spaceBetween: 20,
 
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
 
-    breakpoints: {
-      0: {
-        slidesPerView: 1
+      pagination: {
+
+        el:
+          '.swiper-pagination',
+
+        clickable: true
+
       },
-      768: {
-        slidesPerView: 2
-      }
-    }
 
-  });
+
+      navigation: {
+
+        nextEl:
+          '.swiper-button-next',
+
+        prevEl:
+          '.swiper-button-prev'
+
+      },
+
+
+      breakpoints: {
+
+        0: {
+
+          slidesPerView: 1
+
+        },
+
+        768: {
+
+          slidesPerView: 2
+
+        }
+
+      }
+
+    }
+  );
 
 }

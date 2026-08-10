@@ -1203,3 +1203,161 @@ footer {
 
   display: flex;
 }
+
+/* =========================================================
+   BOTÓN DE MÚSICA
+========================================================= */
+
+.music-btn {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  width: 54px;
+  height: 54px;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  background: rgba(255, 255, 255, 0.85);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 9999;
+
+  padding: 0;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.12);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+
+/* Cuando se muestra */
+
+.music-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* Efecto al pasar el mouse */
+
+.music-btn:hover {
+  transform: scale(1.05);
+}
+
+
+/* Efecto al presionar */
+
+.music-btn:active {
+  transform: scale(0.95);
+}
+
+
+/* =========================================================
+   ICONO
+========================================================= */
+
+.music-icon {
+  position: relative;
+
+  width: 20px;
+  height: 20px;
+
+  display: block;
+}
+
+
+/* =========================================================
+   PAUSA
+========================================================= */
+
+.music-btn.is-playing .music-icon::before,
+.music-btn.is-playing .music-icon::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 3px;
+
+  width: 5px;
+  height: 14px;
+
+  background: #ffffff;
+
+  border-radius: 1px;
+}
+
+
+.music-btn.is-playing .music-icon::before {
+  left: 3px;
+}
+
+
+.music-btn.is-playing .music-icon::after {
+  right: 3px;
+}
+
+
+/* =========================================================
+   REPRODUCIR
+========================================================= */
+
+.music-btn:not(.is-playing) .music-icon::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: 5px;
+  top: 2px;
+
+  width: 0;
+  height: 0;
+
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #ffffff;
+}
+
+
+/* =========================================================
+   CÍRCULO INTERIOR DEL BOTÓN
+========================================================= */
+
+.music-btn.is-playing,
+.music-btn:not(.is-playing) {
+  color: white;
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .music-btn {
+
+    width: 54px;
+    height: 54px;
+
+    right: 18px;
+    bottom: 18px;
+  }
+
+}
