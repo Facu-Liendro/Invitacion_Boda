@@ -137,21 +137,71 @@ section p {
   width: 100vw;
   height: 100vh;
 
-  background: transparent;
+  overflow: hidden;
 
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  /*
+    La portada tiene su propio fondo.
+    De esta manera NO se transparenta el contenido
+    de las secciones que están detrás.
+  */
+  background: #dcecfb;
 
   transition: opacity 0.8s ease;
 }
 
+
+/* =========================================================
+   FONDO DIFUMINADO DE LA PORTADA
+========================================================= */
+
+.cover::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: -20px;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.25),
+      rgba(255,255,255,.25)
+    ),
+    url("assets/Fondos/fondo_flores_celestes_2.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(8px);
+
+  transform: scale(1.05);
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   PORTADA OCULTA
+========================================================= */
+
 .cover.hidden {
 
   opacity: 0;
+
   pointer-events: none;
 }
 
+
+/* =========================================================
+   SOBRE
+========================================================= */
+
 .cover img {
+
+  position: relative;
+
+  z-index: 2;
 
   width: min(560px, 80vw);
 
@@ -162,16 +212,82 @@ section p {
   border-radius: 4px;
 }
 
+
+/* =========================================================
+   TEXTO "TOCÁ PARA COMENZAR"
+========================================================= */
+
 .cover .hint {
+
+  position: relative;
+
+  z-index: 2;
 
   margin-top: 2.5rem;
 
   color: #FFFFFF;
 
   text-shadow:
-    0 1px 2px rgba(245,242,236,.8);
+    0 1px 2px rgba(80,80,80,.25);
 }
 
+
+/* =========================================================
+   HOJAS DECORATIVAS DE LA PORTADA
+========================================================= */
+
+.leaves {
+
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  opacity: .4;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+.leaves svg {
+
+  position: absolute;
+
+  color: #FFFFFF;
+
+  height: 80%;
+  width: 6rem;
+}
+
+.leaves .l {
+
+  left: .5rem;
+  top: 2.5rem;
+}
+
+.leaves .r {
+
+  right: .5rem;
+  top: 2.5rem;
+
+  transform: scaleX(-1);
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .cover img {
+
+    width: min(560px, 80vw);
+
+  }
+
+}
 
 /* =========================================================
    HOJAS DECORATIVAS
