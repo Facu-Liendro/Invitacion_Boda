@@ -1144,71 +1144,8 @@ footer {
    BOTÓN MÚSICA FLOTANTE
 ========================================================= */
 
-#floating-music-btn {
-
-  position: fixed;
-
-  right: 20px;
-  bottom: 20px;
-
-  width: 58px;
-  height: 58px;
-
-  border-radius: 50%;
-
-  border:
-    1px solid
-    #FFFFFF;
-
-  background:
-    rgba(245,242,236,.92);
-
-  color: #FFFFFF;
-
-  font-size: 1.3rem;
-
-  z-index: 9999;
-
-  display: none;
-
-  align-items: center;
-  justify-content: center;
-
-  box-shadow:
-    0 8px 25px
-    rgba(60,45,20,.18);
-
-  backdrop-filter: blur(6px);
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease;
-}
-
-#floating-music-btn:hover {
-
-  transform: scale(1.08);
-
-  box-shadow:
-    0 12px 30px
-    rgba(60,45,20,.25);
-
-  background: #FFFFFF;
-
-  color: white;
-}
-
-#floating-music-btn.show {
-
-  display: flex;
-}
-
-/* =========================================================
-   BOTÓN DE MÚSICA
-========================================================= */
-
 .music-btn {
+
   position: fixed;
 
   right: 24px;
@@ -1218,9 +1155,14 @@ footer {
   height: 54px;
 
   border-radius: 50%;
+
   border: 1px solid rgba(255, 255, 255, 0.75);
 
-  background: rgba(255, 255, 255, 0.85);
+  /* Fondo blanco */
+  background: #FFFFFF;
+
+  /* Color del contenido */
+  color: var(--celeste);
 
   display: flex;
   align-items: center;
@@ -1240,30 +1182,44 @@ footer {
 
   transition:
     opacity 0.3s ease,
-    transform 0.3s ease,
-    background 0.3s ease;
+    transform 0.2s ease;
 }
 
 
-/* Cuando se muestra */
+/* =========================================================
+   CUANDO SE MUESTRA
+========================================================= */
 
 .music-btn.show {
+
   opacity: 1;
   visibility: visible;
+
 }
 
 
-/* Efecto al pasar el mouse */
+/* =========================================================
+   AL PASAR EL MOUSE
+========================================================= */
 
 .music-btn:hover {
+
   transform: scale(1.05);
+
+  /* Mantiene el fondo blanco */
+  background: #FFFFFF;
+
 }
 
 
-/* Efecto al presionar */
+/* =========================================================
+   AL PRESIONAR
+========================================================= */
 
 .music-btn:active {
+
   transform: scale(0.95);
+
 }
 
 
@@ -1272,12 +1228,14 @@ footer {
 ========================================================= */
 
 .music-icon {
+
   position: relative;
 
   width: 20px;
   height: 20px;
 
   display: block;
+
 }
 
 
@@ -1297,24 +1255,29 @@ footer {
   width: 5px;
   height: 14px;
 
-  background: #ffffff;
+  background: var(--celeste);
 
   border-radius: 1px;
+
 }
 
 
 .music-btn.is-playing .music-icon::before {
+
   left: 3px;
+
 }
 
 
 .music-btn.is-playing .music-icon::after {
+
   right: 3px;
+
 }
 
 
 /* =========================================================
-   REPRODUCIR
+   PLAY
 ========================================================= */
 
 .music-btn:not(.is-playing) .music-icon::before {
@@ -1331,17 +1294,9 @@ footer {
 
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-left: 12px solid #ffffff;
-}
 
+  border-left: 12px solid var(--celeste);
 
-/* =========================================================
-   CÍRCULO INTERIOR DEL BOTÓN
-========================================================= */
-
-.music-btn.is-playing,
-.music-btn:not(.is-playing) {
-  color: white;
 }
 
 
@@ -1358,6 +1313,7 @@ footer {
 
     right: 18px;
     bottom: 18px;
+
   }
 
 }
