@@ -17,10 +17,10 @@ body {
 body {
   background:
     linear-gradient(
-      rgba(255,255,255,.60),
-      rgba(255,255,255,.60)
+      rgba(255,255,255,.45),
+      rgba(255,255,255,.45)
     ),
-    url("assets/Fondos/fondo_flores_celestes_2.jpeg");
+    url("assets/Fondos/fondo_flores_celestes_3.jpeg");
 
   background-size: cover;
   background-position: center;
@@ -196,8 +196,8 @@ section p {
 
   background:
     linear-gradient(
-      rgba(255,255,255,.25),
-      rgba(255,255,255,.25)
+      rgba(255,255,255,.45),
+      rgba(255,255,255,.45)
     ),
     url("assets/Fondos/fondo_flores_celestes_2.jpeg");
 
@@ -649,6 +649,8 @@ h1.name {
 
     font-size: clamp(3rem, 5vw, 5rem);
 
+    font-weight: 400;
+
     color: #FFFFFF;
 
     text-shadow:
@@ -798,7 +800,7 @@ h1.name {
 
     gap: clamp(1rem, 2.5vw, 2.5rem);
 
-    margin-top: 3.5rem;
+    margin-top: 1.75rem;
 
     color: #FFFFFF;
 }
