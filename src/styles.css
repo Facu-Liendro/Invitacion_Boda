@@ -99,13 +99,13 @@ button {
 ========================================================= */
 
 section p {
+    font-size: clamp(1.25rem, 1.7vw, 1.55rem);
 
-  font-size: 1.25rem;
-  line-height: 1.9;
+    line-height: 1.9;
 
-  font-weight: 600;
+    font-weight: 600;
 
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 
@@ -114,11 +114,13 @@ section p {
 ========================================================= */
 
 .display {
+    font-family: var(--font-caps);
 
-  font-family: var(--font-caps);
+    font-size: clamp(1.2rem, 1.5vw, 1.4rem);
 
-  font-weight: 400;
-  color: #FFFFFF;
+    font-weight: 400;
+
+    color: #FFFFFF;
 }
 
 .script {
@@ -135,16 +137,14 @@ section p {
 }
 
 .label {
+    font-family: var(--font-caps);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
 
-  font-family: var(--font-caps);
+    font-size: clamp(.95rem, 1.2vw, 1.1rem);
 
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  color: #FFFFFF;
+    font-weight: 600;
+    color: #FFFFFF;
 }
 
 
@@ -614,22 +614,19 @@ section.hero {
 }
 
 h1.name {
+    font-family: var(--font-script);
+    font-weight: 400;
 
-  font-family: var(--font-script);
+    font-size: clamp(5rem, 7vw, 7rem);
 
-  font-weight: 400;
+    line-height: 1;
+    margin: 0;
 
-  font-size: 5rem;
+    color: #FFFFFF;
 
-  line-height: 1;
-
-  margin: 0;
-
-  color: #FFFFFF;
-
-  text-shadow:
-    0 2px 8px
-    rgba(245,242,236,.7);
+    text-shadow:
+        0 2px 8px
+        rgba(245,242,236,.7);
 }
 
 .amp-big {
@@ -648,16 +645,15 @@ h1.name {
 }
 
 .quote {
+    font-family: var(--font-script);
 
-  font-family: var(--font-script);
+    font-size: clamp(3rem, 5vw, 5rem);
 
-  font-size: 2.5rem;
+    color: #FFFFFF;
 
-  color: #FFFFFF;
-
-  text-shadow:
-    0 2px 8px
-    rgba(245,242,236,.7);
+    text-shadow:
+        0 2px 8px
+        rgba(245,242,236,.7);
 }
 
 .ornament {
@@ -680,27 +676,25 @@ h1.name {
 }
 
 .save-date-text {
+    font-family: var(--font-body);
 
-  font-family: var(--font-body);
+    max-width: 750px;
 
-  max-width: 700px;
+    font-size: clamp(1.25rem, 1.7vw, 1.6rem);
 
-  font-size: 1.4rem;
+    line-height: 1.7;
 
-  line-height: 1.7;
-
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .save-date-date {
+    font-family: var(--font-accent);
 
-  font-family: var(--font-accent);
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
 
-  font-size: 1.6rem;
+    font-weight: 600;
 
-  font-weight: 600;
-
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .calendar-image {
@@ -800,14 +794,13 @@ h1.name {
 ========================================================= */
 
 .countdown {
+    display: flex;
 
-  display: flex;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
 
-  gap: 1.5rem;
+    margin-top: 3.5rem;
 
-  margin-top: 3.5rem;
-
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .countdown .u {
@@ -820,16 +813,15 @@ h1.name {
 }
 
 .countdown .v {
+    font-family: var(--font-accent);
 
-  font-family: var(--font-accent);
+    font-size: clamp(2.25rem, 3.5vw, 3rem);
 
-  font-size: 2.25rem;
+    color: #FFFFFF;
 
-  color: #FFFFFF;
-
-  text-shadow:
-    0 2px 8px
-    rgba(245,242,236,.7);
+    text-shadow:
+        0 2px 8px
+        rgba(245,242,236,.7);
 }
 
 .countdown .l {
@@ -851,35 +843,33 @@ h1.name {
 ========================================================= */
 
 .btn {
+    font-family: var(--font-accent);
 
-  font-family: var(--font-accent);
+    letter-spacing: clamp(.18em, .3vw, .35em);
 
-  letter-spacing: .35em;
+    text-transform: uppercase;
 
-  text-transform: uppercase;
+    font-size: clamp(.85rem, 1.2vw, 1rem);
 
-  font-size: 1rem;
+    border: 1px solid #FFFFFF;
 
-  border:
-    1px solid #FFFFFF;
+    padding: .75rem 2rem;
 
-  padding: .75rem 2rem;
+    color: #FFFFFF;
 
-  color: #FFFFFF;
+    text-decoration: none;
 
-  text-decoration: none;
+    display: inline-block;
 
-  display: inline-block;
+    transition: .2s;
 
-  transition: .2s;
+    background: transparent;
 
-  background: transparent;
+    box-shadow:
+        0 4px 12px
+        rgba(60,45,20,.12);
 
-  box-shadow:
-    0 4px 12px
-    rgba(60,45,20,.12);
-
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .btn:hover {
@@ -1204,7 +1194,7 @@ footer {
 /* =========================================================
    RESPONSIVE
 ========================================================= */
-
+/*
 @media (min-width: 768px) {
 
   h1.name {
@@ -1288,6 +1278,7 @@ footer {
   }
 }
 
+*/
 
 /* =========================================================
    BOTÓN MÚSICA FLOTANTE
