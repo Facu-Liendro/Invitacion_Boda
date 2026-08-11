@@ -28,6 +28,8 @@ body {
   background-repeat: no-repeat;
 
   color: var(--cfont);
+
+  font-family: var(--font-body);
 }
 
 img {
@@ -65,6 +67,30 @@ button {
   /* Celeste utilizado para los radios */
   --celeste: #A9D6F5;
 
+  /* =======================================================
+     TIPOGRAFÍAS (mapeo exacto extraído del Boceto.pdf)
+
+     - font-body   → BaskervilleDisplayPT (Boceto, de pago)
+                     reemplazo gratuito: Baskervville
+                     Uso: párrafos de texto (direcciones, descripciones)
+
+     - font-caps   → CormorantSC-Regular (Boceto, gratis: match exacto)
+                     Uso: encabezados en versalitas
+                     ("NOS CASAMOS", "PARROQUIA...", "ELEGANTE", etc.)
+
+     - font-script → Revive80Signature (Boceto, de pago)
+                     reemplazo gratuito: Mrs Saint Delafield
+                     Uso: nombres y títulos de sección estilo firma
+
+     - font-accent → CinzelDecorative (Boceto, gratis: match exacto)
+                     Uso: contador, horarios, botón "Ver Ubicación"
+                     (regular para texto, 700/bold para botones)
+  ======================================================= */
+  --font-body: "Baskervville", serif;
+  --font-caps: "Cormorant SC", serif;
+  --font-script: "Mrs Saint Delafield", cursive;
+  --font-accent: "Cinzel Decorative", cursive;
+
 }
 
 
@@ -89,10 +115,7 @@ section p {
 
 .display {
 
-  font-family:
-    "Cormorant Infant",
-    "Cormorant Garamond",
-    serif;
+  font-family: var(--font-caps);
 
   font-weight: 400;
   color: #FFFFFF;
@@ -100,11 +123,20 @@ section p {
 
 .script {
 
-  font-family: "Italianno", cursive;
+  font-family: var(--font-script);
   font-weight: 400;
 }
 
+.time {
+
+  /* Horarios sueltos (ej. "| 18:00 hs |") — en el Boceto usan
+     Cinzel Decorative, distinto del resto de textos .display */
+  font-family: var(--font-accent);
+}
+
 .label {
+
+  font-family: var(--font-caps);
 
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -495,9 +527,7 @@ section.hero {
 
   flex: 0 0 auto;
 
-  font-family:
-    "Cormorant Garamond",
-    serif;
+  font-family: var(--font-body);
 
   font-size: 1.5rem;
 
@@ -559,7 +589,7 @@ section.hero {
 
 .mono {
 
-  font-family: "Italianno", cursive;
+  font-family: var(--font-script);
 
   letter-spacing: .02em;
 
@@ -585,11 +615,9 @@ section.hero {
 
 h1.name {
 
-  font-family:
-    "Cormorant Infant",
-    serif;
+  font-family: var(--font-script);
 
-  font-weight: 300;
+  font-weight: 400;
 
   font-size: 5rem;
 
@@ -606,9 +634,7 @@ h1.name {
 
 .amp-big {
 
-  font-family:
-    "Italianno",
-    cursive;
+  font-family: var(--font-script);
 
   color: #FFFFFF;
 
@@ -623,9 +649,7 @@ h1.name {
 
 .quote {
 
-  font-family:
-    "Italianno",
-    cursive;
+  font-family: var(--font-script);
 
   font-size: 2.5rem;
 
@@ -657,6 +681,8 @@ h1.name {
 
 .save-date-text {
 
+  font-family: var(--font-body);
+
   max-width: 700px;
 
   font-size: 1.4rem;
@@ -667,6 +693,8 @@ h1.name {
 }
 
 .save-date-date {
+
+  font-family: var(--font-accent);
 
   font-size: 1.6rem;
 
@@ -793,9 +821,7 @@ h1.name {
 
 .countdown .v {
 
-  font-family:
-    "Cormorant Infant",
-    serif;
+  font-family: var(--font-accent);
 
   font-size: 2.25rem;
 
@@ -826,6 +852,8 @@ h1.name {
 
 .btn {
 
+  font-family: var(--font-accent);
+
   letter-spacing: .35em;
 
   text-transform: uppercase;
@@ -851,7 +879,7 @@ h1.name {
     0 4px 12px
     rgba(60,45,20,.12);
 
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .btn:hover {
@@ -985,6 +1013,11 @@ h1.name {
   flex-wrap: wrap;
 
   color: #FFFFFF;
+}
+
+.celebration-time .display {
+
+  font-family: var(--font-accent);
 }
 
 .celebration-time .until {
