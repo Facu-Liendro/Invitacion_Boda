@@ -14,7 +14,7 @@ body {
   padding: 0;
 }
 
-
+/* BODY V1
 body {
   background:
     linear-gradient(
@@ -32,7 +32,52 @@ body {
 
   font-family: var(--font-body);
 }
+*/
 
+
+body {
+  /* Color de respaldo mientras carga la imagen de fondo */
+  background-color: #dcecfb;
+
+  color: var(--cfont);
+
+  font-family: var(--font-body);
+}
+
+/*
+  Fondo fijo real (en vez de background-attachment: fixed).
+
+  background-attachment: fixed obliga al navegador a recalcular
+  y repintar la imagen de fondo del body en cada frame del scroll
+  (especialmente en mobile), lo que genera el "tildado"/freeze
+  mientras se desliza.
+
+  Usando un pseudo-elemento con position: fixed en su lugar, el
+  fondo pasa a su propia capa de composición: el navegador solo
+  la posiciona una vez y no necesita repintarla al hacer scroll.
+  Las secciones (que sí se desplazan) quedan por encima, ya que
+  este pseudo-elemento tiene z-index negativo.
+*/
+body::before {
+
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,.60),
+      rgba(255,255,255,.60)
+    ),
+    url("assets/Fondos/fondo_flores_celestes_2.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 img {
   max-width: 100%;
