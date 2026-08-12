@@ -282,42 +282,208 @@ if (cdContainer) {
 
 
 /* =========================================================
-   FORMULARIO RSVP
+   FORMULARIO CONFIRMACION DE INVITACION -> WHATSAPP
 ========================================================= */
-
+ 
 const rsvpForm =
   document.getElementById('rsvp');
-
-
+ 
 if (rsvpForm) {
-
-  rsvpForm.addEventListener(
-    'submit',
-    e => {
-
-      e.preventDefault();
-
-
-      rsvpForm.style.display =
-        'none';
-
-
-      const thanks =
-        document.getElementById('thanks');
-
-
-      if (thanks) {
-
-        thanks.style.display =
-          'block';
-
-      }
-
+ 
+  rsvpForm.addEventListener('submit', e => {
+ 
+    e.preventDefault();
+ 
+ 
+    /* =====================================================
+       OBTENER DATOS DEL FORMULARIO
+    ===================================================== */
+ 
+    const nombre =
+      rsvpForm
+        .querySelector('input[type="text"]')
+        .value
+        .trim();
+ 
+ 
+    const asistencia =
+      rsvpForm.querySelector(
+        'input[name="attend"]:checked'
+      );
+ 
+ 
+    const asistira =
+      asistencia &&
+      asistencia.parentElement.textContent.trim();
+ 
+ 
+    const inputs =
+      rsvpForm.querySelectorAll(
+        'input[type="text"]'
+      );
+ 
+ 
+    const acompanantes =
+      inputs[1].value.trim();
+ 
+ 
+    const restricciones =
+      inputs[2].value.trim();
+ 
+ 
+    /* =====================================================
+       VALIDAR NOMBRE
+    ===================================================== */
+ 
+    if (!nombre) {
+ 
+      alert(
+        'Por favor, ingresá tu nombre completo.'
+      );
+ 
+      return;
+ 
     }
-  );
-
+ 
+ 
+    /* =====================================================
+       NÚMERO DE WHATSAPP
+    ===================================================== */
+ 
+    const telefono =
+      '5493875720620';
+ 
+ 
+    /* =====================================================
+       EMOJIS
+ 
+       Se construyen a partir de su código numérico
+       (String.fromCodePoint) en lugar de escribir el
+       carácter o el escape "\u{...}" directamente.
+ 
+       Esto los hace inmunes a problemas de encoding del
+       archivo/servidor: el código fuente de esta parte
+       queda compuesto solo por dígitos ASCII, que ninguna
+       codificación (UTF-8, Latin-1, etc.) puede corromper.
+       Si en algún punto de la cadena (editor, servidor,
+       navegador vía file://) algo interpreta mal el archivo,
+       los "\u{1F48D}" escritos como texto podían llegar a
+       corromperse; los códigos numéricos, no.
+    ===================================================== */
+ 
+    const emojiAnillo =
+      String.fromCodePoint(0x1F48D);
+ 
+    const emojiConfirmacion =
+      String.fromCodePoint(0x1F4CB);
+ 
+    const emojiAcompanantes =
+      String.fromCodePoint(0x1F465);
+ 
+    const emojiComida =
+      String.fromCodePoint(0x1F37D, 0xFE0F);
+ 
+    const emojiCorazon =
+      String.fromCodePoint(0x2764, 0xFE0F);
+ 
+ 
+    /* =====================================================
+       CONSTRUIR MENSAJE
+    ===================================================== */
+ 
+    let mensaje =
+      `${emojiAnillo} *Confirmación de Invitación*\n\n` +
+      `Hola! Soy *${nombre}*.\n\n` +
+      `${emojiConfirmacion} *Confirmación de asistencia:*\n` +
+      `${asistira}\n\n`;
+ 
+ 
+    /* =====================================================
+       ACOMPAÑANTES
+    ===================================================== */
+ 
+    if (acompanantes) {
+ 
+      mensaje +=
+        `${emojiAcompanantes} *Acompañante/s:*\n` +
+        `${acompanantes}\n\n`;
+ 
+    } else {
+ 
+      mensaje +=
+        `${emojiAcompanantes} *Acompañante/s:*\n` +
+        `Ninguno\n\n`;
+ 
+    }
+ 
+ 
+    /* =====================================================
+       RESTRICCIONES ALIMENTARIAS
+    ===================================================== */
+ 
+    if (restricciones) {
+ 
+      mensaje +=
+        `${emojiComida} *Restricciones alimentarias:*\n` +
+        `${restricciones}\n\n`;
+ 
+    } else {
+ 
+      mensaje +=
+        `${emojiComida} *Restricciones alimentarias:*\n` +
+        `Ninguna\n\n`;
+ 
+    }
+ 
+ 
+    /* =====================================================
+       DESPEDIDA
+    ===================================================== */
+ 
+    mensaje +=
+      `Gracias! ${emojiCorazon}`;
+ 
+ 
+    /* =====================================================
+       CREAR URL DE WHATSAPP
+    ===================================================== */
+ 
+    const url =
+      `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+ 
+ 
+    /* =====================================================
+       ABRIR WHATSAPP
+    ===================================================== */
+ 
+    window.open(
+      url,
+      '_blank'
+    );
+ 
+ 
+    /* =====================================================
+       MOSTRAR MENSAJE DE AGRADECIMIENTO
+    ===================================================== */
+ 
+    rsvpForm.style.display =
+      'none';
+ 
+ 
+    const thanks =
+      document.getElementById('thanks');
+ 
+ 
+    if (thanks) {
+ 
+      thanks.style.display =
+        'block';
+ 
+    }
+ 
+  });
+ 
 }
-
 
 /* =========================================================
    SWIPER - GALERÍA

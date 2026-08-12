@@ -35,7 +35,6 @@ body {
 */
 
 
-/* BODY V2 
 body {
   background-color: #dcecfb;
 
@@ -72,46 +71,6 @@ body::before {
 
   will-change: transform;
 }
-*/
-
-body {
-  margin: 0;
-  padding: 0;
-
-  background: transparent;
-
-  color: var(--cfont);
-  font-family: var(--font-body);
-
-  overflow-x: hidden;
-}
-
-/* =========================================================
-   FONDO FIJO OPTIMIZADO
-========================================================= */
-
-body::before {
-  content: "";
-
-  position: fixed;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      rgba(255,255,255,.60),
-      rgba(255,255,255,.60)
-    ),
-    url("assets/Fondos/fondo_flores_celestes_2.jpeg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  z-index: -1;
-
-  pointer-events: none;
-}
-
 
 img {
   max-width: 100%;
@@ -267,7 +226,7 @@ section p {
    FONDO DIFUMINADO DE LA PORTADA
 ========================================================= */
 
-/* FONDO PORTADA V1
+
 .cover::before {
 
   content: "";
@@ -292,33 +251,7 @@ section p {
   transform: scale(1.05);
 
   z-index: -1;
-}*/
-
-.cover::before {
-  content: "";
-
-  position: absolute;
-  inset: -20px;
-
-  background:
-    linear-gradient(
-      rgba(255,255,255,.45),
-      rgba(255,255,255,.45)
-    ),
-    url("assets/Fondos/fondo_flores_celestes_2.jpeg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  filter: blur(8px);
-  transform: scale(1.05);
-
-  z-index: -1;
-
-  will-change: transform;
 }
-
 
 /* =========================================================
    PORTADA OCULTA
