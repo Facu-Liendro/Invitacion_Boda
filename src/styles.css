@@ -35,6 +35,7 @@ body {
 */
 
 
+
 body {
   /* Color de respaldo mientras carga la imagen de fondo */
   background-color: #dcecfb;
@@ -44,20 +45,6 @@ body {
   font-family: var(--font-body);
 }
 
-/*
-  Fondo fijo real (en vez de background-attachment: fixed).
-
-  background-attachment: fixed obliga al navegador a recalcular
-  y repintar la imagen de fondo del body en cada frame del scroll
-  (especialmente en mobile), lo que genera el "tildado"/freeze
-  mientras se desliza.
-
-  Usando un pseudo-elemento con position: fixed en su lugar, el
-  fondo pasa a su propia capa de composición: el navegador solo
-  la posiciona una vez y no necesita repintarla al hacer scroll.
-  Las secciones (que sí se desplazan) quedan por encima, ya que
-  este pseudo-elemento tiene z-index negativo.
-*/
 body::before {
 
   content: "";
@@ -77,6 +64,14 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  will-change: transform;
 }
 
 img {
