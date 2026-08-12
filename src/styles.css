@@ -1459,3 +1459,62 @@ footer {
   }
 
 }
+
+/* =========================================================
+   COLORES DE VESTIMENTA
+========================================================= */
+
+.dress-colors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: clamp(1rem, 4vw, 2.5rem);
+
+  width: 100%;
+  max-width: 500px;
+
+  margin-top: 1.5rem;
+
+  padding: 0 1rem;
+}
+
+/*
+.dress-color {
+  width: clamp(70px, 15vw, 105px);
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+  border: none;
+
+  flex: 0 1 auto;
+
+  box-shadow:
+    0 0 12px rgba(40, 40, 40, .22),
+    0 5px 15px rgba(40, 55, 75, .12);
+}
+*/
+
+.dress-color {
+  width: clamp(70px, 15vw, 105px);
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+
+  flex: 0 1 auto;
+
+  box-shadow:
+    0 6px 15px rgba(40, 55, 75, .15);
+}
+
+.color-1 {
+  background: #000000;
+}
+
+.color-2 {
+  background: #06005d;
+}
+
+.color-3 {
+  background: #a9d6f5;
+}
