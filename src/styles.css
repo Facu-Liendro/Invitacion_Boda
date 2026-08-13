@@ -14,28 +14,8 @@ body {
   padding: 0;
 }
 
-/* BODY V1
 body {
-  background:
-    linear-gradient(
-      rgba(255,255,255,.45),
-      rgba(255,255,255,.45)
-    ),
-    url("assets/Fondos/fondo_flores_celestes_3.jpeg");
-
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-
-  color: var(--cfont);
-
-  font-family: var(--font-body);
-}
-*/
-
-
-body {
+  /* Color de respaldo mientras carga la imagen de fondo */
   background-color: #dcecfb;
 
   color: var(--cfont);
@@ -43,6 +23,20 @@ body {
   font-family: var(--font-body);
 }
 
+/*
+  Fondo fijo real (en vez de background-attachment: fixed).
+
+  background-attachment: fixed obliga al navegador a recalcular
+  y repintar la imagen de fondo del body en cada frame del scroll
+  (especialmente en mobile), lo que genera el "tildado"/freeze
+  mientras se desliza.
+
+  Usando un pseudo-elemento con position: fixed en su lugar, el
+  fondo pasa a su propia capa de composición: el navegador solo
+  la posiciona una vez y no necesita repintarla al hacer scroll.
+  Las secciones (que sí se desplazan) quedan por encima, ya que
+  este pseudo-elemento tiene z-index negativo.
+*/
 body::before {
 
   content: "";
@@ -63,6 +57,20 @@ body::before {
   background-position: center;
   background-repeat: no-repeat;
 
+  /*
+    Fuerza a que este fondo tenga su PROPIA capa de composición
+    (GPU) desde el primer render, en vez de que el navegador
+    recién la cree al empezar el gesto de scroll.
+
+    Sin esto, en Chrome/Safari mobile —sobre todo cuando la
+    barra de direcciones se oculta o aparece durante el
+    deslizamiento— el navegador puede "soltar" momentáneamente
+    la capa fija y dejar ver por una fracción de segundo el
+    color de respaldo del body en vez de la imagen (el
+    rectángulo celeste liso que se ve en el medio de la
+    pantalla). Con la capa ya composited de antemano, eso no
+    vuelve a suceder.
+  */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
 
@@ -139,13 +147,13 @@ button {
 ========================================================= */
 
 section p {
-    font-size: clamp(1.25rem, 1.7vw, 1.55rem);
 
-    line-height: 1.9;
+  font-size: 1.25rem;
+  line-height: 1.9;
 
-    font-weight: 600;
+  font-weight: 600;
 
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 
@@ -154,13 +162,11 @@ section p {
 ========================================================= */
 
 .display {
-    font-family: var(--font-caps);
 
-    font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+  font-family: var(--font-caps);
 
-    font-weight: 400;
-
-    color: #FFFFFF;
+  font-weight: 400;
+  color: #FFFFFF;
 }
 
 .script {
@@ -177,14 +183,16 @@ section p {
 }
 
 .label {
-    font-family: var(--font-caps);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
 
-    font-size: clamp(.95rem, 1.2vw, 1.1rem);
+  font-family: var(--font-caps);
 
-    font-weight: 600;
-    color: #FFFFFF;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  color: #FFFFFF;
 }
 
 
@@ -226,7 +234,6 @@ section p {
    FONDO DIFUMINADO DE LA PORTADA
 ========================================================= */
 
-
 .cover::before {
 
   content: "";
@@ -237,8 +244,8 @@ section p {
 
   background:
     linear-gradient(
-      rgba(255,255,255,.45),
-      rgba(255,255,255,.45)
+      rgba(255,255,255,.25),
+      rgba(255,255,255,.25)
     ),
     url("assets/Fondos/fondo_flores_celestes_2.jpeg");
 
@@ -252,6 +259,7 @@ section p {
 
   z-index: -1;
 }
+
 
 /* =========================================================
    PORTADA OCULTA
@@ -654,19 +662,22 @@ section.hero {
 }
 
 h1.name {
-    font-family: var(--font-script);
-    font-weight: 400;
 
-    font-size: clamp(5rem, 7vw, 7rem);
+  font-family: var(--font-script);
 
-    line-height: 1;
-    margin: 0;
+  font-weight: 400;
 
-    color: #FFFFFF;
+  font-size: 5rem;
 
-    text-shadow:
-        0 2px 8px
-        rgba(245,242,236,.7);
+  line-height: 1;
+
+  margin: 0;
+
+  color: #FFFFFF;
+
+  text-shadow:
+    0 2px 8px
+    rgba(245,242,236,.7);
 }
 
 .amp-big {
@@ -685,17 +696,16 @@ h1.name {
 }
 
 .quote {
-    font-family: var(--font-script);
 
-    font-size: clamp(3rem, 5vw, 5rem);
+  font-family: var(--font-script);
 
-    font-weight: 400;
+  font-size: 2.5rem;
 
-    color: #FFFFFF;
+  color: #FFFFFF;
 
-    text-shadow:
-        0 2px 8px
-        rgba(245,242,236,.7);
+  text-shadow:
+    0 2px 8px
+    rgba(245,242,236,.7);
 }
 
 .ornament {
@@ -718,25 +728,27 @@ h1.name {
 }
 
 .save-date-text {
-    font-family: var(--font-body);
 
-    max-width: 750px;
+  font-family: var(--font-body);
 
-    font-size: clamp(1.25rem, 1.7vw, 1.6rem);
+  max-width: 700px;
 
-    line-height: 1.7;
+  font-size: 1.4rem;
 
-    color: #FFFFFF;
+  line-height: 1.7;
+
+  color: #FFFFFF;
 }
 
 .save-date-date {
-    font-family: var(--font-accent);
 
-    font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-family: var(--font-accent);
 
-    font-weight: 600;
+  font-size: 1.6rem;
 
-    color: #FFFFFF;
+  font-weight: 600;
+
+  color: #FFFFFF;
 }
 
 .calendar-image {
@@ -836,13 +848,14 @@ h1.name {
 ========================================================= */
 
 .countdown {
-    display: flex;
 
-    gap: clamp(1rem, 2.5vw, 2.5rem);
+  display: flex;
 
-    margin-top: 1.75rem;
+  gap: 1.5rem;
 
-    color: #FFFFFF;
+  margin-top: 3.5rem;
+
+  color: #FFFFFF;
 }
 
 .countdown .u {
@@ -855,15 +868,16 @@ h1.name {
 }
 
 .countdown .v {
-    font-family: var(--font-accent);
 
-    font-size: clamp(2.25rem, 3.5vw, 3rem);
+  font-family: var(--font-accent);
 
-    color: #FFFFFF;
+  font-size: 2.25rem;
 
-    text-shadow:
-        0 2px 8px
-        rgba(245,242,236,.7);
+  color: #FFFFFF;
+
+  text-shadow:
+    0 2px 8px
+    rgba(245,242,236,.7);
 }
 
 .countdown .l {
@@ -885,33 +899,35 @@ h1.name {
 ========================================================= */
 
 .btn {
-    font-family: var(--font-accent);
 
-    letter-spacing: clamp(.18em, .3vw, .35em);
+  font-family: var(--font-accent);
 
-    text-transform: uppercase;
+  letter-spacing: .35em;
 
-    font-size: clamp(.85rem, 1.2vw, 1rem);
+  text-transform: uppercase;
 
-    border: 1px solid #FFFFFF;
+  font-size: 1rem;
 
-    padding: .75rem 2rem;
+  border:
+    1px solid #FFFFFF;
 
-    color: #FFFFFF;
+  padding: .75rem 2rem;
 
-    text-decoration: none;
+  color: #FFFFFF;
 
-    display: inline-block;
+  text-decoration: none;
 
-    transition: .2s;
+  display: inline-block;
 
-    background: transparent;
+  transition: .2s;
 
-    box-shadow:
-        0 4px 12px
-        rgba(60,45,20,.12);
+  background: transparent;
 
-    font-weight: 700;
+  box-shadow:
+    0 4px 12px
+    rgba(60,45,20,.12);
+
+  font-weight: 700;
 }
 
 .btn:hover {
@@ -1236,7 +1252,7 @@ footer {
 /* =========================================================
    RESPONSIVE
 ========================================================= */
-/*
+
 @media (min-width: 768px) {
 
   h1.name {
@@ -1320,7 +1336,6 @@ footer {
   }
 }
 
-*/
 
 /* =========================================================
    BOTÓN MÚSICA FLOTANTE
@@ -1519,24 +1534,8 @@ footer {
   padding: 0 1rem;
 }
 
-/*
 .dress-color {
-  width: clamp(70px, 15vw, 105px);
-  aspect-ratio: 1 / 1;
-
-  border-radius: 50%;
-  border: none;
-
-  flex: 0 1 auto;
-
-  box-shadow:
-    0 0 12px rgba(40, 40, 40, .22),
-    0 5px 15px rgba(40, 55, 75, .12);
-}
-*/
-
-.dress-color {
-  width: clamp(70px, 15vw, 105px);
+  width: clamp(52px, 11vw, 78px);
   aspect-ratio: 1 / 1;
 
   border-radius: 50%;
@@ -1548,13 +1547,14 @@ footer {
 }
 
 .color-1 {
-  background: #000000;
+  background: #FEFEFE;
+  border: 1px solid rgba(40, 55, 75, .15);
 }
 
 .color-2 {
-  background: #06005d;
+  background: #FBF1E5;
 }
 
 .color-3 {
-  background: #a9d6f5;
+  background: #AACAF0;
 }
