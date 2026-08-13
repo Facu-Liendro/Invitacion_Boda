@@ -2,9 +2,11 @@
    AÑO ACTUAL EN EL FOOTER
 ========================================================= */
 
+/*
 document.getElementById('year').textContent =
   'Invitaciones digitales · © ' + new Date().getFullYear();
 
+*/
 
 /* =========================================================
    MÚSICA
